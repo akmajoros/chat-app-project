@@ -1,76 +1,40 @@
 package com.greenfox.chatapp.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-@Entity
+@Getter
+@Setter
 public class Log {
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
 
-  private String path;
-  private String method;
-  private Timestamp timestamp;
-  private String logLevel;
-  private String reqData;
+  LocalDateTime timestamp;
+  String logLevel;
+  String path;
+  String method;
+  String reqData;
 
-  public Log(){
-    this.path = "path";
-    this.method = "method";
-    this.timestamp = new Timestamp(System.currentTimeMillis());
-    this.logLevel = "logLevel";
-    this.reqData = "reqData";
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public String getPath() {
-    return path;
-  }
-
-  public void setPath(String path) {
-    this.path = path;
-  }
-
-  public String getMethod() {
-    return method;
-  }
-
-  public void setMethod(String method) {
-    this.method = method;
-  }
-
-  public Timestamp getTimestamp() {
-    return timestamp;
-  }
-
-  public void setTimestamp(Timestamp timestamp) {
-    this.timestamp = timestamp;
-  }
-
-  public String getLogLevel() {
-    return logLevel;
-  }
-
-  public void setLogLevel(String logLevel) {
+  public Log(String logLevel, String path, String method, String reqData) {
+    this.timestamp = LocalDateTime.now();
     this.logLevel = logLevel;
-  }
-
-  public String getReqData() {
-    return reqData;
-  }
-
-  public void setReqData(String reqData) {
+    this.path = path;
+    this.method = method;
     this.reqData = reqData;
+  }
+
+  @Override
+  public String toString() {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss.SSS");
+    return timestamp.format(formatter) + " " + logLevel + " Request " + path + " " + method + " " + reqData;
   }
 }
