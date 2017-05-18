@@ -11,8 +11,8 @@ public class Json {
     return message;
   }
 
-  public void setChatMessage(ChatMessage chatMessage) {
-    this.message = chatMessage;
+  public void setChatMessage(ChatMessage message) {
+    this.message = message;
   }
 
   public Client getClient() {
