@@ -20,7 +20,7 @@
     Hi there! Submit your message using the send button!
 </ul>
 <ul th:each="message : ${messages}">
-    <li th:text="${message.usernames}"></li>
+    <li th:text="${message.username}"></li>
     <span th:text="${message.newMessage}"></span>
 </ul>
 <form th:action="@{/send}" method="post">
