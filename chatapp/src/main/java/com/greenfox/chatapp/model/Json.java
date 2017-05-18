@@ -4,15 +4,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Json {
-  ChatMessage chatMessage;
+  ChatMessage message;
   Client client;
 
   public ChatMessage getChatMessage() {
-    return chatMessage;
+    return message;
   }
 
   public void setChatMessage(ChatMessage chatMessage) {
-    this.chatMessage = chatMessage;
+    this.message = chatMessage;
   }
 
   public Client getClient() {
