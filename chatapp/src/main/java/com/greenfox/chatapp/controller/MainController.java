@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
@@ -45,7 +46,10 @@ public class MainController {
   }
 
   @PostMapping(value = "/enter")
-  public String addNewUser(String username){
+  public String addNewUser(String username) {
+    if (username.equals("")) {
+      return "entererror";
+    }
     repository.save(new Users(username));
     return "redirect:/";
   }
