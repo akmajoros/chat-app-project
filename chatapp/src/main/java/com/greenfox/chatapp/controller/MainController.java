@@ -73,7 +73,7 @@ public class MainController {
   public String sendMessage(String messages){
     chatMessage.setId();
     chatMessage.setUsername(userNames.getUserName());
-    chatMessage.setNewMessage(messages);
+    chatMessage.setText(messages);
     chatMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
     messageRepository.save(chatMessage);
     return "redirect:/";

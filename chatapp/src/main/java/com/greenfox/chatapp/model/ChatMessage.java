@@ -17,7 +17,7 @@ public class ChatMessage {
   long id;
 
   String username;
-  String newMessage;
+  String text;
   Timestamp timestamp;
 
   public String getUsername() {
@@ -28,12 +28,12 @@ public class ChatMessage {
     this.username = username;
   }
 
-  public String getNewMessage() {
-    return newMessage;
+  public String getText() {
+    return text;
   }
 
-  public void setNewMessage(String newMessage) {
-    this.newMessage = newMessage;
+  public void setText(String text) {
+    this.text = text;
   }
 
   public void setId(){
