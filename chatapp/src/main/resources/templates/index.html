@@ -9,12 +9,8 @@
 <table>
     <form action="/enter">
         <tr>
-            <td>Current user:</td>
-            <td th:text="${username}"></td>
-        </tr>
-        <tr>
             <td>Your username:</td>
-            <td><input name="Username" type="text"/></td>
+            <td><input name="Username" type="text" th:value="${username}"/></td>
             <td><input type="submit" value="Update"/></td>
         </tr>
     </form>
