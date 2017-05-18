@@ -5,6 +5,7 @@ import com.greenfox.chatapp.model.UserNames;
 import com.greenfox.chatapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ public class MainController {
 
   @Autowired
   UserRepository repository;
+  @Autowired
+  UserNames userNames;
 
   String chatAppUniqueId;
   String chatAppPeerAddress;
@@ -31,11 +34,12 @@ public class MainController {
   }
 
   @RequestMapping(value = "/")
-  public String indexPage() {
+  public String indexPage(Model model) {
     String currentLogLevel = System.getenv("CHAT_APP_LOGLEVEL");
     if (currentLogLevel != null && currentLogLevel.equals("INFO")) {
       System.out.println(new Log("INFO", "/", "GET", "stuff"));
     }
+    model.addAttribute("username", userNames.getUserName());
     return "index";
   }
 
@@ -49,7 +53,9 @@ public class MainController {
     if (username.equals("")) {
       return "entererror";
     }
-    repository.save(new UserNames(username));
+    userNames.setUserName(username);
+    userNames.setId(1l);
+    repository.save(userNames);
     return "redirect:/";
   }
  }

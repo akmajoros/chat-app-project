@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
@@ -8,6 +8,10 @@
 <h1>Peer to Peer Chat program</h1>
 <table>
     <form action="/enter">
+        <tr>
+            <td>Current user:</td>
+            <td th:text="${username}"></td>
+        </tr>
         <tr>
             <td>Your username:</td>
             <td><input name="Username" type="text"/></td>
@@ -19,5 +23,11 @@
     <li>App</li>
     Hi there! Submit your message using the send button!
 </ul>
+<form action="/sendmessage" method="post">
+    <textarea name="message" rows="8" cols="40">
+        Enter your message!
+    </textarea>
+    <input type="submit" value="Send"/>
+</form>
 </body>
 </html>
