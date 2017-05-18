@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Timestamp;
 
 @Entity
 @Component
@@ -17,6 +18,7 @@ public class ChatMessage {
 
   String username;
   String newMessage;
+  Timestamp timestamp;
 
   public String getUsername() {
     return username;
@@ -40,5 +42,9 @@ public class ChatMessage {
 
   private long random() {
     return (1000000+(long)(Math.random() * 9000000));
+  }
+
+  public void setTimestamp(Timestamp timestamp) {
+    this.timestamp = timestamp;
   }
 }

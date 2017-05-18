@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import java.sql.Timestamp;
+
 @Controller
 public class MainController {
 
@@ -72,6 +74,7 @@ public class MainController {
     chatMessage.setId();
     chatMessage.setUsername(userNames.getUserName());
     chatMessage.setNewMessage(messages);
+    chatMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
     messageRepository.save(chatMessage);
     return "redirect:/";
   }
