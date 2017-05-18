@@ -9,17 +9,17 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-public class Users {
+public class UserNames {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   long id;
 
   String userName;
 
-  public Users(){
+  public UserNames(){
   }
 
-  public Users(String userName){
+  public UserNames(String userName){
     this.userName = userName;
   }
 

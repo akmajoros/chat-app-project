@@ -1,13 +1,12 @@
 package com.greenfox.chatapp.controller;
 
 import com.greenfox.chatapp.model.Log;
-import com.greenfox.chatapp.model.Users;
+import com.greenfox.chatapp.model.UserNames;
 import com.greenfox.chatapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
@@ -50,7 +49,7 @@ public class MainController {
     if (username.equals("")) {
       return "entererror";
     }
-    repository.save(new Users(username));
+    repository.save(new UserNames(username));
     return "redirect:/";
   }
  }

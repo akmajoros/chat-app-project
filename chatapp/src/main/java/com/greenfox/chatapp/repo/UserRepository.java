@@ -1,8 +1,7 @@
 package com.greenfox.chatapp.repo;
 
-import com.greenfox.chatapp.model.Users;
+import com.greenfox.chatapp.model.UserNames;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Component;
 
-public interface UserRepository extends CrudRepository<Users, Long> {
+public interface UserRepository extends CrudRepository<UserNames, Long> {
 }
