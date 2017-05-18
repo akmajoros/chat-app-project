@@ -1,7 +1,9 @@
 package com.greenfox.chatapp.controller;
 
+import com.greenfox.chatapp.model.ChatMessage;
 import com.greenfox.chatapp.model.Log;
 import com.greenfox.chatapp.model.UserNames;
+import com.greenfox.chatapp.repo.MessageRepository;
 import com.greenfox.chatapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,10 @@ public class MainController {
   UserRepository repository;
   @Autowired
   UserNames userNames;
+  @Autowired
+  MessageRepository messageRepository;
+  @Autowired
+  ChatMessage chatMessage;
 
   String chatAppUniqueId;
   String chatAppPeerAddress;
@@ -44,7 +50,8 @@ public class MainController {
   }
 
   @RequestMapping(value = "/enter")
-  public String registerPage() {
+  public String registerPage(Model model) {
+    model.addAttribute("username", userNames.getUserName());
     return "enter";
   }
 
@@ -56,6 +63,15 @@ public class MainController {
     userNames.setUserName(username);
     userNames.setId(1l);
     repository.save(userNames);
+    return "redirect:/";
+  }
+
+  @PostMapping(value = "/send")
+  public String sendMessage(String messages){
+    chatMessage.setId();
+    chatMessage.setUsername(userNames.getUserName());
+    chatMessage.setNewMessage(messages);
+    messageRepository.save(chatMessage);
     return "redirect:/";
   }
  }

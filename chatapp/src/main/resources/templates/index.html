@@ -19,6 +19,10 @@
     <li>App</li>
     Hi there! Submit your message using the send button!
 </ul>
+<ul th:each="message : ${messages}">
+    <li th:text="${message.usernames}"></li>
+    <span th:text="${message.newMessage}"></span>
+</ul>
 <form action="/sendmessage" method="post">
     <textarea name="message" rows="8" cols="40">
         Enter your message!

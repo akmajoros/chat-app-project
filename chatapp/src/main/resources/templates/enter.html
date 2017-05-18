@@ -10,7 +10,7 @@
     <form th:action="@{/enter}" method="post">
         <tr>
             <td>Choose your name:</td>
-            <td><input type="text" name="username"/></td>
+            <td><input type="text" name="username" th:value="${username}"/></td>
             <td><input type="submit" value="Enter"/></td>
         </tr>
     </form>
