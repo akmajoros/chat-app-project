@@ -1,6 +1,8 @@
 package com.greenfox.chatapp.controller;
 
 import com.greenfox.chatapp.model.Log;
+import com.greenfox.chatapp.model.Users;
+import com.greenfox.chatapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +12,9 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 @Controller
 public class MainController {
+
+  @Autowired
+  UserRepository repository;
 
   String chatAppUniqueId;
   String chatAppPeerAddress;
@@ -38,4 +43,10 @@ public class MainController {
   public String registerPage() {
     return "enter";
   }
-}
+
+  @PostMapping(value = "/enter")
+  public String addNewUser(String username){
+    repository.save(new Users(username));
+    return "redirect:/";
+  }
+ }
