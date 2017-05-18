@@ -46,6 +46,7 @@ public class MainController {
       System.out.println(new Log("INFO", "/", "GET", "stuff"));
     }
     model.addAttribute("username", userNames.getUserName());
+    model.addAttribute("messages", messageRepository.findAll());
     return "index";
   }
 
