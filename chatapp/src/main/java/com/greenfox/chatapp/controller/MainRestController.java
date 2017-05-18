@@ -13,6 +13,8 @@ public class MainRestController {
   MessageRepository messageRepository;
   @Autowired
   Status status;
+  @Autowired
+  Json json;
 
   @CrossOrigin("*")
   @PostMapping(value = "/api/message/receive")
