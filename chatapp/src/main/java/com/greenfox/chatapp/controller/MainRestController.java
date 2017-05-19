@@ -17,7 +17,8 @@ public class MainRestController {
   @CrossOrigin("*")
   @PostMapping(value = "/api/message/receive")
   public Status receivedMessage(@RequestBody Json json){
-    messageRepository.save(json.getChatMessage());
+    System.out.println(json);
+    messageRepository.save(json.getMessage());
     status.setStatus("ok");
     return status;
   }

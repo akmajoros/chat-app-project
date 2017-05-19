@@ -10,11 +10,11 @@ public class Json {
 
   }
 
-  public ChatMessage getChatMessage() {
+  public ChatMessage getMessage() {
     return message;
   }
 
-  public void setChatMessage(ChatMessage message) {
+  public void setMessage(ChatMessage message) {
     this.message = message;
   }
 
