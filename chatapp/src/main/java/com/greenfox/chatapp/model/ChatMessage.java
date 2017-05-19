@@ -13,7 +13,6 @@ import java.sql.Timestamp;
 public class ChatMessage {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
   long id;
 
   String username;
@@ -46,5 +45,13 @@ public class ChatMessage {
 
   public void setTimestamp(Timestamp timestamp) {
     this.timestamp = timestamp;
+  }
+
+  public long getId() {
+    return id;
+  }
+
+  public Timestamp getTimestamp() {
+    return timestamp;
   }
 }
