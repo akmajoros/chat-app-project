@@ -2,10 +2,13 @@ package com.greenfox.chatapp.model;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class Json {
   ChatMessage message;
   Client client;
+
+  public Json(){
+
+  }
 
   public ChatMessage getChatMessage() {
     return message;
