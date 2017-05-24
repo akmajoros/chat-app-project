@@ -1,8 +1,6 @@
 package com.greenfox.chatapp.controller;
 
-import com.greenfox.chatapp.model.ChatMessage;
-import com.greenfox.chatapp.model.Log;
-import com.greenfox.chatapp.model.UserNames;
+import com.greenfox.chatapp.model.*;
 import com.greenfox.chatapp.repo.MessageRepository;
 import com.greenfox.chatapp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import java.sql.Timestamp;
@@ -26,6 +25,10 @@ public class MainController {
   MessageRepository messageRepository;
   @Autowired
   ChatMessage chatMessage;
+  @Autowired
+  Client client;
+
+  RestTemplate restTemplate = new RestTemplate();
 
   String chatAppUniqueId;
   String chatAppPeerAddress;
@@ -76,6 +79,24 @@ public class MainController {
     chatMessage.setText(messages);
     chatMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
     messageRepository.save(chatMessage);
+    return "redirect:/";
+  }
+
+  String url = "https://chat-p2p.herokuapp.com/api/message/receive";
+
+  @PostMapping(value = "/send")
+  public String addMessage(String messages) {
+    chatMessage.setId();
+    chatMessage.setUsername(userNames.getUserName());
+    chatMessage.setText(messages);
+    chatMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
+    messageRepository.save(chatMessage);
+
+    client.setId("akmajoros");
+    Json json = new Json();
+    json.setMessage(chatMessage);
+    json.setClient(client);
+    restTemplate.postForObject(url, json, Json.class);
     return "redirect:/";
   }
  }

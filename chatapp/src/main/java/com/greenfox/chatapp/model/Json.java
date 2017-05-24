@@ -7,7 +7,6 @@ public class Json {
   Client client;
 
   public Json(){
-
   }
 
   public ChatMessage getMessage() {
