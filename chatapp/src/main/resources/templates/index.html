@@ -3,31 +3,71 @@
 <head>
     <meta charset="UTF-8" />
     <title>Title</title>
+    <meta http-equiv="refresh" content="30"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous"/>
 </head>
 <body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
 <h1>Peer to Peer Chat program</h1>
-<table>
-    <form action="/enter">
-        <tr>
-            <td>Your username:</td>
+            <div class="panel panel-default">
+                <div class="panel-heading">User</div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <table>
+                            <form th:action="@{/enter}">
+                                <tr>
+                                    <td><strong>Your username </strong></td>
             <td><input name="Username" type="text" th:value="${username}"/></td>
             <td><input type="submit" value="Update"/></td>
         </tr>
     </form>
 </table>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">Chat</div>
+                <div class="panel-body">
 <ul>
     <li>App</li>
-    Hi there! Submit your message using the send button!
+    <span>Hi there! Submit your message using the send button!</span>
 </ul>
 <ul th:each="message : ${messages}">
     <li th:text="${message.username}"></li>
     <span th:text="${message.text}"></span>
 </ul>
-<form th:action="@{/send}" method="post">
-    <textarea name="messages" rows="8" cols="40">
-        Enter your message!
-    </textarea>
-    <input type="submit" value="Send"/>
-</form>
+                    <table>
+                        <p><strong>Message</strong></p>
+                        <form th:action="@{/send}" method="post">
+                            <tr>
+                                <td>
+                                    <textarea class="form-control" name="messages" rows="1"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input class="btn btn-primary" type="submit" value="send"/>
+                                    <a class="glyphicon glyphicon-refresh btn btn-default" type="submit" href="/"></a>
+                                </td>
+                            </tr>
+                        </form>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
