@@ -72,7 +72,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  String url = "https://.herokuapp.com/api/message/receive";
+  String url = "https://phorv1chatapp.herokuapp.com/api/message/receive";
 
   @PostMapping(value = "/send")
   public String addMessage(String messages) {
