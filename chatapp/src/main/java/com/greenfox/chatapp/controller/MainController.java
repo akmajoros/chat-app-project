@@ -40,7 +40,7 @@ public class MainController {
 
   @ExceptionHandler(value = NoHandlerFoundException.class)
   public String notFound() {
-    System.out.println("ERROR");
+    System.err.println("ERROR");
     return "index";
   }
 
