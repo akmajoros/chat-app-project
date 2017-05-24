@@ -72,17 +72,7 @@ public class MainController {
     return "redirect:/";
   }
 
-  @PostMapping(value = "/send")
-  public String sendMessage(String messages){
-    chatMessage.setId();
-    chatMessage.setUsername(userNames.getUserName());
-    chatMessage.setText(messages);
-    chatMessage.setTimestamp(new Timestamp(System.currentTimeMillis()));
-    messageRepository.save(chatMessage);
-    return "redirect:/";
-  }
-
-  String url = "https://chat-p2p.herokuapp.com/api/message/receive";
+  String url = "https://.herokuapp.com/api/message/receive";
 
   @PostMapping(value = "/send")
   public String addMessage(String messages) {
